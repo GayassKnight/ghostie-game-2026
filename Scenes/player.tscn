@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://fgx7hvuu7rfx"]
+
+[ext_resource type="Texture2D" uid="uid://byliluneiledf" path="res://Assets/player_sprite.jpg" id="1_v0iea"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrm1d"]
+size = Vector2(64, 64)
+
+[node name="Player" type="CharacterBody2D" unique_id=419081174]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=808869498]
+position = Vector2(515, 244)
+texture = ExtResource("1_v0iea")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=206981370]
+position = Vector2(515, 244)
+shape = SubResource("RectangleShape2D_wrm1d")
