@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://byliluneiledf" path="res://Assets/player_sprite.jpg" id="1_v0iea"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrm1d"]
-size = Vector2(64, 64)
+[sub_resource type="CircleShape2D" id="CircleShape2D_3dryh"]
+radius = 32.06244
 
 [node name="Player" type="CharacterBody2D" unique_id=419081174]
 
@@ -11,4 +11,4 @@ size = Vector2(64, 64)
 texture = ExtResource("1_v0iea")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=206981370]
-shape = SubResource("RectangleShape2D_wrm1d")
+shape = SubResource("CircleShape2D_3dryh")
