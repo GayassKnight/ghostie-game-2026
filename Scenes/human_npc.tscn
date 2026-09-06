@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://ct8s4o57vwtry"]
+
+[ext_resource type="Texture2D" uid="uid://b6vt8du7gt16e" path="res://Assets/npc_sprite.jpg" id="1_2wtwj"]
+[ext_resource type="Script" uid="uid://bca1jciko54dt" path="res://Scripts/human_npc.gd" id="1_jiiee"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8qmx4"]
+size = Vector2(64, 64)
+
+[node name="HumanNPC" type="CharacterBody2D" unique_id=1217994032]
+script = ExtResource("1_jiiee")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=280951372]
+texture = ExtResource("1_2wtwj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=148475865]
+shape = SubResource("RectangleShape2D_8qmx4")
