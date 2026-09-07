@@ -6,7 +6,53 @@ class_name StateMachineSimple
 
 #Onready variables
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
+@onready var idle_timer: Timer = $IdleTimer
 
 #Regular variables
+const SPEED = 100
 enum HumanStates {IDLE, WALKING, POSSESED}
-var current_state = HumanStates.IDLE
+var current_state: HumanStates
+var current_destination:Marker2D
+
+func _ready() -> void:
+	_set_state(HumanStates.IDLE)
+
+func _physics_process(delta: float) -> void:
+	match current_state:
+		HumanStates.IDLE:
+			pass
+		HumanStates.WALKING:
+			var next_path:Vector2 = navigation_agent_2d.get_next_path_position()
+			var new_velocity:Vector2 = global_position.direction_to(next_path) * SPEED
+			velocity = new_velocity
+			var look_target:Vector2 = Vector2(next_path.x,next_path.y)
+			if not global_position.is_equal_approx(look_target):
+				look_at(look_target)
+			move_and_slide()
+		HumanStates.POSSESED:
+			pass
+
+func _set_state(new_state:HumanStates) -> void:
+	current_state = new_state
+	
+	match current_state:
+		HumanStates.IDLE:
+			idle_timer.start(1 + randf())
+			pass
+		HumanStates.WALKING:
+			pass
+		HumanStates.POSSESED:
+			pass
+
+func _on_idle_timer_timeout() -> void:
+	choose_next_state()
+
+func choose_next_state() -> void:
+	if current_state == HumanStates.IDLE:
+		current_destination = destinations.pick_random()
+		navigation_agent_2d.target_position = current_destination.global_position
+		_set_state(HumanStates.WALKING)
+
+
+func _on_navigation_agent_2d_navigation_finished() -> void:
+	_set_state(HumanStates.IDLE)
