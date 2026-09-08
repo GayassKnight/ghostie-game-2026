@@ -7,6 +7,7 @@ class_name StateMachineSimple
 #Onready variables
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 @onready var idle_timer: Timer = $IdleTimer
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 #Regular variables
 const SPEED = 100
@@ -14,6 +15,7 @@ enum HumanStates {IDLE, WALKING, POSSESED}
 var current_state: HumanStates
 var current_destination:Marker2D
 
+#Ready and Physics functions
 func _ready() -> void:
 	_set_state(HumanStates.IDLE)
 
@@ -32,20 +34,19 @@ func _physics_process(delta: float) -> void:
 		HumanStates.POSSESED:
 			pass
 
+#Custom functions
 func _set_state(new_state:HumanStates) -> void:
 	current_state = new_state
 	
 	match current_state:
 		HumanStates.IDLE:
 			idle_timer.start(1 + randf())
+			animated_sprite.play("Idle")
 			pass
 		HumanStates.WALKING:
-			pass
+			animated_sprite.play("Walking")
 		HumanStates.POSSESED:
 			pass
-
-func _on_idle_timer_timeout() -> void:
-	choose_next_state()
 
 func choose_next_state() -> void:
 	if current_state == HumanStates.IDLE:
@@ -53,6 +54,12 @@ func choose_next_state() -> void:
 		navigation_agent_2d.target_position = current_destination.global_position
 		_set_state(HumanStates.WALKING)
 
+#Connected Signals
+func _on_idle_timer_timeout() -> void:
+	choose_next_state()
 
 func _on_navigation_agent_2d_navigation_finished() -> void:
 	_set_state(HumanStates.IDLE)
+
+func _on_area_2d_player_entered(body: Player) -> void:
+	pass # Replace with function body.
