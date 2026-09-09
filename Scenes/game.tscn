@@ -7,9 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://ct8s4o57vwtry" path="res://Scenes/human_npc.tscn" id="5_wowpa"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_3dryh"]
-vertices = PackedVector2Array(520, -8, 205.82031, -8, 513.1406, -184.00781, 699.60156, -184.97656, 966.1172, -8, 696, -8, 696, 72, 520, 72, 1080, 72, 1080, 887, 72, 887, 72, 72)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 4, 5), PackedInt32Array(0, 3, 5), PackedInt32Array(0, 5, 6, 7), PackedInt32Array(6, 8, 9, 10), PackedInt32Array(7, 6, 10), PackedInt32Array(7, 10, 11)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(64, 64, 511, -192, 702, -193, 1089, 64, 1089, 895, 63, 895)])
+vertices = PackedVector2Array(520, -8, 158.57813, -8, 502.2422, -308.21094, 710.7969, -323.72656, 1009.7969, -8, 696, -8, 696, 72, 520, 72, 1080, 72, 1080, 887, 72, 887, 72, 72)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5, 2), PackedInt32Array(0, 2, 5, 6), PackedInt32Array(7, 0, 6), PackedInt32Array(6, 8, 9, 10), PackedInt32Array(7, 6, 10), PackedInt32Array(7, 10, 11)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(64, 64, 499, -316, 714, -332, 1089, 64, 1089, 895, 63, 895)])
 source_geometry_mode = 1
 source_geometry_group_name = &"navigation"
 agent_radius = 8.0
@@ -76,6 +76,11 @@ z_index = 50
 position = Vector2(991, 797)
 gizmo_extents = 60.0
 
+[node name="Exit" type="Node" parent="BackgroundAndNavigation" unique_id=955254452]
+
+[node name="Exit" type="Marker2D" parent="BackgroundAndNavigation/Exit" unique_id=658471415]
+position = Vector2(604, -278)
+
 [node name="Player" parent="." unique_id=419081174 instance=ExtResource("1_ebmjs")]
 z_index = 1000
 position = Vector2(404, 261)
@@ -87,10 +92,11 @@ limit_top = 0
 limit_right = 1152
 limit_bottom = 962
 
-[node name="HumanNPC" parent="." unique_id=1217994032 node_paths=PackedStringArray("destinations") instance=ExtResource("5_wowpa")]
+[node name="HumanNPC" parent="." unique_id=1217994032 node_paths=PackedStringArray("destinations", "exit_destination") instance=ExtResource("5_wowpa")]
 z_index = 100
 position = Vector2(604, -84)
 collision_layer = 2
 collision_mask = 2
 safe_margin = 0.001
-destinations = [NodePath("../BackgroundAndNavigation/Shops/Shop1"), NodePath("../BackgroundAndNavigation/Shops/Shop2"), NodePath("../BackgroundAndNavigation/Shops/Shop3"), NodePath("../BackgroundAndNavigation/Shops/Shop4"), NodePath("../BackgroundAndNavigation/Shops/Shop5"), NodePath("../BackgroundAndNavigation/Shops/Shop6")]
+destinations = [NodePath("../BackgroundAndNavigation/Shops/Shop1"), NodePath("../BackgroundAndNavigation/Shops/Shop2"), NodePath("../BackgroundAndNavigation/Shops/Shop3"), NodePath("../BackgroundAndNavigation/Shops/Shop4"), NodePath("../BackgroundAndNavigation/Shops/Shop5"), NodePath("../BackgroundAndNavigation/Shops/Shop6"), NodePath("../BackgroundAndNavigation/Exit/Exit")]
+exit_destination = NodePath("../BackgroundAndNavigation/Exit/Exit")

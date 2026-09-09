@@ -3,14 +3,16 @@ class_name StateMachineSimple
 
 #Export variables
 @export var destinations:Array[Marker2D]
+@export var exit_destination:Marker2D
 
 #Onready variables
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 @onready var idle_timer: Timer = $IdleTimer
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var human_npc: StateMachineSimple = $"."
 
 #Regular variables
-const SPEED = 100
+const SPEED = 900
 enum HumanStates {IDLE, WALKING, POSSESED}
 var current_state: HumanStates
 var current_destination:Marker2D
@@ -59,7 +61,13 @@ func _on_idle_timer_timeout() -> void:
 	choose_next_state()
 
 func _on_navigation_agent_2d_navigation_finished() -> void:
-	_set_state(HumanStates.IDLE)
+	if current_destination == exit_destination:
+		despawn()
+	else:
+		_set_state(HumanStates.IDLE)
 
-func _on_area_2d_player_entered(body: Player) -> void:
+func despawn() -> void:
+	human_npc.queue_free()
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
 	pass # Replace with function body.

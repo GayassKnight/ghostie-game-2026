@@ -75,3 +75,4 @@ shape = SubResource("RectangleShape2D_8qmx4")
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
 [connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_player_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
