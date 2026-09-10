@@ -45,39 +45,39 @@ tile_set = SubResource("TileSet_8qmx4")
 
 [node name="Shops" type="Node" parent="BackgroundAndNavigation" unique_id=1877739935]
 
-[node name="Shop1" type="Marker2D" parent="BackgroundAndNavigation/Shops" unique_id=2072764148]
+[node name="Shop1" type="Marker2D" parent="BackgroundAndNavigation/Shops" unique_id=2072764148 groups=["Shops"]]
 z_index = 50
 position = Vector2(996, 479)
 gizmo_extents = 60.0
 
-[node name="Shop2" type="Marker2D" parent="BackgroundAndNavigation/Shops" unique_id=1375156619]
+[node name="Shop2" type="Marker2D" parent="BackgroundAndNavigation/Shops" unique_id=1375156619 groups=["Shops"]]
 z_index = 50
 position = Vector2(157, 797)
 gizmo_extents = 60.0
 
-[node name="Shop3" type="Marker2D" parent="BackgroundAndNavigation/Shops" unique_id=729172660]
+[node name="Shop3" type="Marker2D" parent="BackgroundAndNavigation/Shops" unique_id=729172660 groups=["Shops"]]
 z_index = 50
 position = Vector2(155, 154)
 gizmo_extents = 60.0
 
-[node name="Shop4" type="Marker2D" parent="BackgroundAndNavigation/Shops" unique_id=19485616]
+[node name="Shop4" type="Marker2D" parent="BackgroundAndNavigation/Shops" unique_id=19485616 groups=["Shops"]]
 z_index = 50
 position = Vector2(155, 476)
 gizmo_extents = 60.0
 
-[node name="Shop5" type="Marker2D" parent="BackgroundAndNavigation/Shops" unique_id=672324726]
+[node name="Shop5" type="Marker2D" parent="BackgroundAndNavigation/Shops" unique_id=672324726 groups=["Shops"]]
 z_index = 50
 position = Vector2(992, 156)
 gizmo_extents = 60.0
 
-[node name="Shop6" type="Marker2D" parent="BackgroundAndNavigation/Shops" unique_id=1146175816]
+[node name="Shop6" type="Marker2D" parent="BackgroundAndNavigation/Shops" unique_id=1146175816 groups=["Shops"]]
 z_index = 50
 position = Vector2(991, 797)
 gizmo_extents = 60.0
 
 [node name="Exit" type="Node" parent="BackgroundAndNavigation" unique_id=955254452]
 
-[node name="Exit" type="Marker2D" parent="BackgroundAndNavigation/Exit" unique_id=658471415]
+[node name="Exit" type="Marker2D" parent="BackgroundAndNavigation/Exit" unique_id=658471415 groups=["Shops"]]
 position = Vector2(604, -278)
 
 [node name="Player" parent="." unique_id=419081174 instance=ExtResource("1_ebmjs")]
@@ -86,6 +86,7 @@ position = Vector2(404, 261)
 script = ExtResource("2_qxrlw")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1104563625]
+limit_enabled = false
 limit_left = 0
 limit_top = 0
 limit_right = 1152

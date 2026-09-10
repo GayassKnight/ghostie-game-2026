@@ -28,6 +28,10 @@ folder_colors={
 "res://Scripts/": "purple"
 }
 
+[global_group]
+
+Shops=""
+
 [input]
 
 Up={

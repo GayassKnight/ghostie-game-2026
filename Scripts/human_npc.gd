@@ -1,24 +1,33 @@
 extends CharacterBody2D
-class_name StateMachineSimple
+class_name HumanNPC
 
 #Export variables
-@export var destinations:Array[Marker2D]
+#@export var destinations:Array[Marker2D]
+@export var destinations:Array
 @export var exit_destination:Marker2D
 
 #Onready variables
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 @onready var idle_timer: Timer = $IdleTimer
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var human_npc: StateMachineSimple = $"."
+@onready var human_npc: HumanNPC = $"."
 
 #Regular variables
-const SPEED = 900
+const SPEED = 1900
 enum HumanStates {IDLE, WALKING, POSSESED}
 var current_state: HumanStates
 var current_destination:Marker2D
 
 #Ready and Physics functions
+func set_destination(destination_list):
+	if not destinations:
+		destinations = []
+	
+	destinations.assign(destination_list)
+
 func _ready() -> void:
+	set_collision_layer_value(2, true)
+	set_collision_mask_value(1, false)
 	_set_state(HumanStates.IDLE)
 
 func _physics_process(delta: float) -> void:
