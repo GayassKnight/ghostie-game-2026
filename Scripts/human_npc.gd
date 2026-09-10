@@ -67,7 +67,7 @@ func _on_navigation_agent_2d_navigation_finished() -> void:
 		_set_state(HumanStates.IDLE)
 
 func despawn() -> void:
-	human_npc.queue_free()
+	human_npc.get_parent().remove_child(self)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	pass # Replace with function body.
