@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/Izzie/Desktop/Godot proyects/Ghost game/goofy-game-jam-2026/Video/Recording.avi"
+
 [file_customization]
 
 folder_colors={

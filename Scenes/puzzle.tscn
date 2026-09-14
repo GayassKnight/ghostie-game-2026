@@ -1,3 +1,28 @@
 [gd_scene format=3 uid="uid://c8pwudhck87at"]
 
-[node name="Puzzle" type="Node2D" unique_id=1721146119]
+[ext_resource type="Script" uid="uid://wxl0vcdrm0kp" path="res://Scripts/puzzle.gd" id="1_go0o5"]
+
+[node name="Puzzle" type="Control" unique_id=52874422]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_go0o5")
+
+[node name="Finish" type="Button" parent="." unique_id=251785402]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -91.0
+offset_top = -99.0
+offset_right = 91.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Finish Puzzle"
+
+[connection signal="pressed" from="Finish" to="." method="_on_finish_pressed"]

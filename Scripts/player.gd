@@ -4,11 +4,9 @@ class_name Player
 const SPEED = 300.0
 
 func _ready() -> void:
-	set_collision_layer_value(1, true)
-	set_collision_layer_value(2, false)
-	set_collision_mask_value(1, false)
 	set_collision_mask_value(2, false)
-
+	set_collision_mask_value(3,true)
+	
 func _physics_process(delta: float) -> void:
 	
 	var direction = Vector2(Input.get_axis("Left","Right"),Input.get_axis("Up","Down"))

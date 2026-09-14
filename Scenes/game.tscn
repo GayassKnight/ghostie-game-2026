@@ -25,8 +25,8 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSet" id="TileSet_8qmx4"]
 tile_size = Vector2i(64, 64)
-physics_layer_0/collision_layer = 3
-physics_layer_0/collision_mask = 3
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 4
 sources/1 = SubResource("TileSetAtlasSource_wowpa")
 
 [node name="Game" type="Node2D" unique_id=1668702980]
@@ -83,11 +83,16 @@ position = Vector2(604, -278)
 [node name="Player" parent="." unique_id=419081174 instance=ExtResource("1_ebmjs")]
 z_index = 1000
 position = Vector2(404, 261)
+collision_mask = 0
 script = ExtResource("2_qxrlw")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1104563625]
-limit_enabled = false
 limit_left = 0
 limit_top = 0
 limit_right = 1152
 limit_bottom = 962
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=2038247976]
+wait_time = 0.5
+
+[connection signal="timeout" from="SpawnTimer" to="GameManager" method="_on_spawn_timer_timeout"]

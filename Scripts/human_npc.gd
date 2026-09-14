@@ -13,7 +13,7 @@ class_name HumanNPC
 @onready var human_npc: HumanNPC = $"."
 
 #Regular variables
-const SPEED = 1900
+const SPEED = 1000
 enum HumanStates {IDLE, WALKING, POSSESED}
 var current_state: HumanStates
 var current_destination:Marker2D
@@ -28,6 +28,8 @@ func set_destination(destination_list):
 func _ready() -> void:
 	set_collision_layer_value(2, true)
 	set_collision_mask_value(1, false)
+	set_collision_mask_value(3,true)
+	z_index = 100
 	_set_state(HumanStates.IDLE)
 
 func _physics_process(delta: float) -> void:
@@ -72,6 +74,7 @@ func _on_idle_timer_timeout() -> void:
 func _on_navigation_agent_2d_navigation_finished() -> void:
 	if current_destination == exit_destination:
 		despawn()
+		set_physics_process(false)
 	else:
 		_set_state(HumanStates.IDLE)
 
