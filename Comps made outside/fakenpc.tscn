@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://sek4374t346d"]
+
+[ext_resource type="Script" uid="uid://086osmgwauvd" path="res://Comps made outside/fakenpc.gd" id="1_jx705"]
+[ext_resource type="Texture2D" uid="uid://d25an0ouug0dt" path="res://icon.svg" id="2_m5g8a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m5g8a"]
+radius = 63.007935
+
+[node name="FAKENPC" type="CharacterBody2D" unique_id=1628364461]
+script = ExtResource("1_jx705")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1513857107]
+texture = ExtResource("2_m5g8a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=84809609]
+shape = SubResource("CircleShape2D_m5g8a")

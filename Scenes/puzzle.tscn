@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://c8pwudhck87at"]
+[gd_scene format=3 uid="uid://6tk1e5ugt30s"]
 
-[ext_resource type="Script" uid="uid://wxl0vcdrm0kp" path="res://Scripts/puzzle.gd" id="1_go0o5"]
+[ext_resource type="Script" uid="uid://ccnwnja5vghyw" path="res://Scripts/puzzle.gd" id="1_go0o5"]
 
-[node name="Puzzle" type="Control" unique_id=52874422]
+[node name="Puzzle" type="Control" unique_id=574062764]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,18 +11,24 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_go0o5")
 
-[node name="Finish" type="Button" parent="." unique_id=251785402]
+[node name="OKButton" type="Button" parent="." unique_id=1107947171]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = -91.0
-offset_top = -99.0
-offset_right = 91.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Finish Puzzle"
+offset_right = 31.0
+grow_vertical = 2
+text = "YAY OK"
 
-[connection signal="pressed" from="Finish" to="." method="_on_finish_pressed"]
+[node name="NotOKButton" type="Button" parent="." unique_id=1619958618]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -81.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Not Okay"
+
+[connection signal="pressed" from="OKButton" to="." method="_on_ok_button_pressed"]
+[connection signal="pressed" from="NotOKButton" to="." method="_on_not_ok_button_pressed"]

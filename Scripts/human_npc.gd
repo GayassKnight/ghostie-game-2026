@@ -2,7 +2,6 @@ extends CharacterBody2D
 class_name HumanNPC
 
 #Export variables
-#@export var destinations:Array[Marker2D]
 @export var destinations:Array
 @export var exit_destination:Marker2D
 
@@ -11,12 +10,15 @@ class_name HumanNPC
 @onready var idle_timer: Timer = $IdleTimer
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var human_npc: HumanNPC = $"."
+@onready var interactable: Area2D = $Interactable
 
 #Regular variables
 const SPEED = 1000
-enum HumanStates {IDLE, WALKING, POSSESED}
+enum HumanStates {IDLE, WALKING, POSSESED,DETECTED}
 var current_state: HumanStates
 var current_destination:Marker2D
+const PUZZLE_SCENE := preload("res://Scenes/puzzle.tscn") # your path
+var puzzle: Puzzle
 
 #Ready and Physics functions
 func set_destination(destination_list):
@@ -31,8 +33,17 @@ func _ready() -> void:
 	set_collision_mask_value(3,true)
 	z_index = 100
 	_set_state(HumanStates.IDLE)
+	interactable.interact = _on_interact
+	
+	##Puzzle logic
+	puzzle = PUZZLE_SCENE.instantiate() as Puzzle
+	puzzle.hide()   
+	puzzle.puzzle_father = self
+	
+	puzzle.success.connect(_on_puzzle_success)
+	puzzle.failure.connect(_on_puzzle_failure)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	match current_state:
 		HumanStates.IDLE:
 			pass
@@ -59,7 +70,10 @@ func _set_state(new_state:HumanStates) -> void:
 		HumanStates.WALKING:
 			animated_sprite.play("Walking")
 		HumanStates.POSSESED:
-			pass
+			idle_timer.stop()
+			animated_sprite.play("Possesed")
+		HumanStates.DETECTED:
+			animated_sprite.play("Detected")
 
 func choose_next_state() -> void:
 	if current_state == HumanStates.IDLE:
@@ -80,6 +94,19 @@ func _on_navigation_agent_2d_navigation_finished() -> void:
 
 func despawn() -> void:
 	human_npc.get_parent().remove_child(self)
+	
+#Interacting part
+func _on_interact():
+	if (animated_sprite.animation == "Walking" && interactable.is_interactable==true) || (animated_sprite.animation == "Idle"&& interactable.is_interactable==true):
+		_set_state(HumanStates.POSSESED)
+		interactable.is_interactable = false
+		add_child(puzzle)
+		puzzle.visible = true
+		puzzle.z_index = 150
+		print("Puzzle opened")
+		
+func _on_puzzle_success() -> void:
+	print("Puzzle solved")
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
+func _on_puzzle_failure(location: Vector2) -> void:
+	print("Puzzle failed at ", location)

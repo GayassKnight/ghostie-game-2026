@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b6vt8du7gt16e" path="res://Assets/npc_sprite.jpg" id="1_2wtwj"]
 [ext_resource type="Script" uid="uid://bca1jciko54dt" path="res://Scripts/human_npc.gd" id="1_jiiee"]
+[ext_resource type="PackedScene" uid="uid://cay68vfqw65my" path="res://Scenes/Components/interactable.tscn" id="3_qkaym"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jiiee"]
 atlas = ExtResource("1_2wtwj")
@@ -10,6 +11,10 @@ region = Rect2(0, 64, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_qkaym"]
 atlas = ExtResource("1_2wtwj")
 region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1f5kq"]
+atlas = ExtResource("1_2wtwj")
+region = Rect2(64, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mciwj"]
 atlas = ExtResource("1_2wtwj")
@@ -33,7 +38,10 @@ animations = [{
 "name": &"Idle",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1f5kq")
+}],
 "loop": 1,
 "name": &"Possesed",
 "speed": 5.0
@@ -50,15 +58,16 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_wowpa"]
 radius = 28.01785
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8qmx4"]
-size = Vector2(64, 64)
+[sub_resource type="CircleShape2D" id="CircleShape2D_8qmx4"]
+radius = 50.01
 
 [node name="HumanNPC" type="CharacterBody2D" unique_id=1217994032]
+input_pickable = true
 script = ExtResource("1_jiiee")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1281725094]
 sprite_frames = SubResource("SpriteFrames_8qmx4")
-animation = &"Detected"
+animation = &"Possesed"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=148475865]
 shape = SubResource("CircleShape2D_wowpa")
@@ -67,12 +76,11 @@ shape = SubResource("CircleShape2D_wowpa")
 
 [node name="IdleTimer" type="Timer" parent="." unique_id=1254582068]
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1220273310]
+[node name="Interactable" parent="." unique_id=412234999 instance=ExtResource("3_qkaym")]
+interact_name = "Haunt!"
 
-[node name="Area2DShape" type="CollisionShape2D" parent="Area2D" unique_id=374601221]
-shape = SubResource("RectangleShape2D_8qmx4")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=1758284996]
+shape = SubResource("CircleShape2D_8qmx4")
 
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
 [connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_player_entered"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

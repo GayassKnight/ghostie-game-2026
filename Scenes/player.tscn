@@ -1,14 +1,20 @@
 [gd_scene format=3 uid="uid://fgx7hvuu7rfx"]
 
+[ext_resource type="Script" uid="uid://cbuuwtmug48v5" path="res://Scripts/interacting_component.gd" id="1_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://byliluneiledf" path="res://Assets/player_sprite.jpg" id="1_v0iea"]
+[ext_resource type="PackedScene" uid="uid://ql5qrpypdjyq" path="res://Scenes/Components/interacting_component.tscn" id="3_vgqql"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3dryh"]
 radius = 29.0
 
 [node name="Player" type="CharacterBody2D" unique_id=419081174]
+input_pickable = true
+script = ExtResource("1_6t5aa")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=808869498]
 texture = ExtResource("1_v0iea")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=206981370]
 shape = SubResource("CircleShape2D_3dryh")
+
+[node name="InteractingComponent" parent="." unique_id=1676390788 instance=ExtResource("3_vgqql")]

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://iloavb0lsm0x"]
+
+[ext_resource type="PackedScene" uid="uid://sek4374t346d" path="res://fakenpc.tscn" id="1_q4otm"]
+
+[node name="Testing ground" type="Node2D" unique_id=422211417]
+
+[node name="FAKENPC" parent="." unique_id=1628364461 instance=ExtResource("1_q4otm")]
+position = Vector2(536, 335)
+input_pickable = true
